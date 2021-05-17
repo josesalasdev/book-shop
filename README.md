@@ -1,0 +1,1 @@
+# golang_api_template
