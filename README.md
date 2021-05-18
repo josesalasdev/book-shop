@@ -4,7 +4,7 @@ This is an api template in go with docker.
 
 ## Starter
 
-````bash
+```bash
 docker-compose up
 ```
 
