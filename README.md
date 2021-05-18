@@ -1,1 +1,10 @@
-# golang_api_template
+# Go Api Template
+
+This is an api template in go with docker.
+
+## Starter
+
+````bash
+docker-compose up
+```
+
