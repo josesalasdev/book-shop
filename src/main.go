@@ -9,10 +9,10 @@ import (
 func main() {
 	r := gin.Default()
 
-	models.ConnectDatabase()
+	models.ConnectDataBase()
 
 	// routes
-	r.GET("/ping", controllers.Health)
+	r.GET("/ping", controllers.Ping)
 	r.GET("/books", controllers.FindBooks)
 
 	r.Run() // listen and serve on 0.0.0.0:8080

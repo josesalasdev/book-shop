@@ -17,20 +17,20 @@ WORKDIR /app
 # are not changed.
 
 # Copy go mod and sum files
-COPY src/go.mod ./
-COPY src/go.sum ./
+COPY go.mod ./
+COPY go.sum ./
 
 # Download all dependencies.
 RUN go mod download
 
 # Now, copy the source code
-COPY src/. .
+COPY ./src .
 
 # Note here: CGO_ENABLED is disabled for cross system compilation
 # It is also a common best practise.
 
 # Build the application.
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./bin/main .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ../bin/main .
 
 # Finally our multi-stage to build a small image
 # Start a new stage from scratch
