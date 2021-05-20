@@ -7,4 +7,12 @@ This is an api template in go with docker.
 ```bash
 docker-compose up
 ```
+or
 
+```bash
+go run src/main.go
+```
+
+## Docs
+
+* http://localhost:8080/swagger/index.html
