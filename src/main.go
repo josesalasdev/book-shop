@@ -2,11 +2,13 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	_ "github.com/joho/godotenv/autoload"
+	"github.com/josesalasdev/golang_api_template/docs"
+	"github.com/josesalasdev/golang_api_template/src/config"
 	"github.com/josesalasdev/golang_api_template/src/controllers"
 	"github.com/josesalasdev/golang_api_template/src/models"
-	"github.com/josesalasdev/golang_api_template/docs"
-	"github.com/swaggo/gin-swagger" // gin-swagger middleware
-	"github.com/swaggo/files" // swagger embed files
+	swaggerFiles "github.com/swaggo/files"     // swagger embed files
+	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
 
 // @contact.name API Support
@@ -34,5 +36,5 @@ func main() {
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run(config.Port) // listen and serve
 }
