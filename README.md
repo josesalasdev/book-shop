@@ -16,3 +16,7 @@ go run src/main.go
 ## Docs
 
 * http://localhost:8080/swagger/index.html
+
+## Environment
+
+The loads env vars from a `.env` file.
