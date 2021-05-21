@@ -3,14 +3,15 @@
 package models
 
 import (
-	"gorm.io/driver/sqlite"
+	"github.com/josesalasdev/golang_api_template/src/config"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
 func ConnectDataBase() {
-	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(config.MysqlDns), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}
