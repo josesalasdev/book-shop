@@ -1,23 +1,15 @@
-version: "3"
+version: '3.3'
 
 services:
   db:
-    image: mysql:5.7
+    image: postgres
     restart: always
     env_file:
       - .env
-    ports:
-      # <Port exposed> : < MySQL Port running inside container>
-      - "3306:3306"
-    expose:
-      # Opens port 3306 on the container
-      - "3306"
-      # Where our data will be persisted
-
-    networks:
-      - fullstack
     volumes:
-      - my-db:/var/lib/mysql
+      - my-db:/var/lib/postgresql
+    ports:
+      - '5432:5432'
 
   app:
     container_name: go_api
@@ -25,20 +17,12 @@ services:
     ports:
       - 8080:8080
     restart: on-failure
-    environment:
-      PORT: 8080
     volumes:
       - .:/app
     depends_on:
       - db
     env_file:
       - .env
-    networks:
-      - fullstack
 
 volumes:
   my-db:
-
-networks:
-  fullstack:
-    driver: bridge

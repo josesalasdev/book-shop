@@ -6,23 +6,23 @@ import (
 	"fmt"
 
 	"github.com/josesalasdev/golang_api_template/src/config"
-	"gorm.io/driver/mysql"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
 func ConnectDataBase() {
-	mysqlDns := fmt.Sprintf(
-		"%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		config.MysqlUser,
-		config.MysqlPassword,
-		config.MysqlHost,
-		config.MysqlPort,
-		config.MysqlDataBase,
+	dsn := fmt.Sprintf(
+		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=America/Bogota",
+		config.PostgresHostName,
+		config.PostgresUser,
+		config.PostgresPassword,
+		config.PostgresDataBase,
+		config.PostgresPort,
 	)
-	fmt.Println(mysqlDns)
-	db, err := gorm.Open(mysql.Open(mysqlDns), &gorm.Config{})
+	fmt.Println(dsn)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
 	}

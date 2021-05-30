@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: username
+      POSTGRES_DB: books
+    volumes:
+      - my-db:/var/lib/postgresql
+    ports:
+      - '5432:5432'
+
+# Names our volume
+volumes:
+  my-db:

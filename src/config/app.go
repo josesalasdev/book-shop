@@ -2,11 +2,11 @@ package config
 
 import "os"
 
-var Port = os.Getenv("PORT")
+var Port = ":" + os.Getenv("PORT")
 
-// Mysql config
-var MysqlDataBase = os.Getenv("MYSQL_DATABASE")
-var MysqlUser = os.Getenv("MYSQL_USER")
-var MysqlPassword = os.Getenv("MYSQL_PASSWORD")
-var MysqlHost = os.Getenv("MYSQL_HOST")
-var MysqlPort = os.Getenv("MYSQL_PORT")
+// Postgres config.
+var PostgresDataBase = os.Getenv("POSTGRES_DB")
+var PostgresHostName = os.Getenv("POSTGRES_HOSTNAME")
+var PostgresUser = os.Getenv("POSTGRES_USER")
+var PostgresPassword = os.Getenv("POSTGRES_PASSWORD")
+var PostgresPort = os.Getenv("POSTGRES_PORT")
