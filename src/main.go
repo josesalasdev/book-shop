@@ -15,9 +15,8 @@ import (
 // @contact.url http://www.swagger.io/support
 // @contact.email support@swagger.io
 
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-
+// @license.name MIT License
+// @license.url https://opensource.org/licenses/MIT
 func main() {
 	r := gin.Default()
 
@@ -25,10 +24,16 @@ func main() {
 
 	// routes
 	r.GET("/v1/ping", controllers.Ping)
-	r.GET("/v1/books", controllers.FindBooks)
+
+	apiBook := r.Group("/v1/book")
+	{
+		apiBook.POST("/", controllers.CreateBook)
+		apiBook.GET("/", controllers.FindBooks)
+		apiBook.GET("/:id", controllers.DetailBooks)
+	}
 
 	// programmatically set swagger info
-	docs.SwaggerInfo.Title = "Swagger Example API"
+	docs.SwaggerInfo.Title = "Go template API"
 	docs.SwaggerInfo.Description = "This is a sample server golang."
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.Host = "localhost:8080"

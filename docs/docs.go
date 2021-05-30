@@ -24,15 +24,15 @@ var doc = `{
             "email": "support@swagger.io"
         },
         "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            "name": "MIT License",
+            "url": "https://opensource.org/licenses/MIT"
         },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/books": {
+        "/book/": {
             "get": {
                 "description": "Get all books.",
                 "consumes": [
@@ -41,7 +41,7 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Find Books.",
+                "summary": "Find books.",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -53,9 +53,68 @@ var doc = `{
                         }
                     }
                 }
+            },
+            "post": {
+                "description": "Create a book.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create a book.",
+                "parameters": [
+                    {
+                        "description": "Book Data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateBookInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
             }
         },
-        "/ping": {
+        "/book/{id}/": {
+            "get": {
+                "description": "Detail of a book by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Detail of a book.",
+                "operationId": "get-string-by-int",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Book ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
+            }
+        },
+        "/ping/": {
             "get": {
                 "description": "Health Api.",
                 "consumes": [
@@ -64,7 +123,7 @@ var doc = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "Health Api.",
+                "summary": "Health api.",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -91,6 +150,21 @@ var doc = `{
                 "id": {
                     "type": "integer"
                 },
+                "price": {
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CreateBookInput": {
+            "type": "object",
+            "required": [
+                "price",
+                "title"
+            ],
+            "properties": {
                 "price": {
                     "type": "number"
                 },

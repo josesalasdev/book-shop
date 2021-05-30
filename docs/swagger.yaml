@@ -13,16 +13,26 @@ definitions:
       title:
         type: string
     type: object
+  models.CreateBookInput:
+    properties:
+      price:
+        type: number
+      title:
+        type: string
+    required:
+    - price
+    - title
+    type: object
 info:
   contact:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
   license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
+    name: MIT License
+    url: https://opensource.org/licenses/MIT
 paths:
-  /books:
+  /book/:
     get:
       consumes:
       - application/json
@@ -36,8 +46,47 @@ paths:
             items:
               $ref: '#/definitions/models.Book'
             type: array
-      summary: Find Books.
-  /ping:
+      summary: Find books.
+    post:
+      consumes:
+      - application/json
+      description: Create a book.
+      parameters:
+      - description: Book Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateBookInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Create a book.
+  /book/{id}/:
+    get:
+      consumes:
+      - application/json
+      description: Detail of a book by ID
+      operationId: get-string-by-int
+      parameters:
+      - description: Book ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Book'
+      summary: Detail of a book.
+  /ping/:
     get:
       consumes:
       - application/json
@@ -49,5 +98,5 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/controllers.pingMessage'
-      summary: Health Api.
+      summary: Health api.
 swagger: "2.0"
