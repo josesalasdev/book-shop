@@ -32,6 +32,12 @@ func main() {
 		apiBook.GET("/:id", controllers.DetailBooks)
 	}
 
+	apiCategory := r.Group("/v1/category")
+	{
+		apiCategory.POST("/", controllers.CreateCategory)
+		apiCategory.GET("/", controllers.FindCategory)
+	}
+
 	// programmatically set swagger info
 	docs.SwaggerInfo.Title = "Go template API"
 	docs.SwaggerInfo.Description = "This is a sample server golang."

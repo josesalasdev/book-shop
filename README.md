@@ -1,6 +1,6 @@
 # Go Api Template
 
-This is an api template in go with docker.
+This API template is a book store inspired service with multiple functions such as authorization, authentication, publishing, sales and inventory, to be a basic service guide for other developers.
 
 ## Starter
 
@@ -13,7 +13,7 @@ or
 go run src/main.go
 ```
 
-## Docs
+## Api Docs
 
 * http://localhost:8080/swagger/index.html
 
