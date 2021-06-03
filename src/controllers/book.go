@@ -51,7 +51,7 @@ func DetailBooks(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param data body models.CreateBookInput true "Book Data"
-// @Success 200 {object} models.Book
+// @Success 200 {object} models.CreateBookInput
 // @Router /book/ [post]
 func CreateBook(c *gin.Context) {
 	// Validate input
@@ -62,7 +62,12 @@ func CreateBook(c *gin.Context) {
 	}
 
 	// Create book
-	book := models.Book{Title: input.Title, Price: input.Price}
+	book := models.Book{
+		Title:      input.Title,
+		Price:      input.Price,
+		Author:     input.Author,
+		CategoryID: input.CategoryID,
+	}
 	models.DB.Create(&book)
 
 	c.JSON(http.StatusCreated, input)
