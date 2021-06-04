@@ -47,5 +47,5 @@ func main() {
 	docs.SwaggerInfo.Schemes = []string{"http", "https"}
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
-	r.Run(config.Port) // listen and serve
+	r.Run(config.Port) // nolint
 }
