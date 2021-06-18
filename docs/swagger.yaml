@@ -6,20 +6,57 @@ definitions:
     type: object
   models.Book:
     properties:
+      author:
+        type: string
+      category:
+        type: integer
+      createAt:
+        type: string
+      deleteAt:
+        type: string
       id:
         type: integer
       price:
         type: number
       title:
         type: string
+      updateAt:
+        type: string
+    type: object
+  models.Category:
+    properties:
+      books:
+        items:
+          $ref: '#/definitions/models.Book'
+        type: array
+      createAt:
+        type: string
+      deleteAt:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      updateAt:
+        type: string
+    type: object
+  models.CategoryInput:
+    properties:
+      name:
+        type: string
     type: object
   models.CreateBookInput:
     properties:
+      author:
+        type: string
+      category:
+        type: integer
       price:
         type: number
       title:
         type: string
     required:
+    - author
     - price
     - title
     type: object
@@ -64,7 +101,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Book'
+            $ref: '#/definitions/models.CreateBookInput'
       summary: Create a book.
   /book/{id}/:
     get:
@@ -86,6 +123,47 @@ paths:
           schema:
             $ref: '#/definitions/models.Book'
       summary: Detail of a book.
+  /category/:
+    get:
+      consumes:
+      - application/json
+      description: Create a category.
+      parameters:
+      - description: Category Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.Category'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Category'
+            type: array
+      summary: List categories.
+    post:
+      consumes:
+      - application/json
+      description: Create a category.
+      parameters:
+      - description: Category Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.CategoryInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Category'
+      summary: Create a category.
   /ping/:
     get:
       consumes:

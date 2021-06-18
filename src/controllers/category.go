@@ -33,13 +33,13 @@ func CreateCategory(c *gin.Context) {
 }
 
 // FindCategory godoc
-// @Summary Create a book.
+// @Summary List categories.
 // @Description Create a category.
 // @Accept  json
 // @Produce  json
 // @Param data body models.Category true "Category Data"
-// @Success 200 {object} models.Category
-// @Router /category/ [post]
+// @Success 200 {object} []models.Category
+// @Router /category/ [get]
 func FindCategory(c *gin.Context) {
 	var categories []models.Category
 	models.DB.Find(&categories)
