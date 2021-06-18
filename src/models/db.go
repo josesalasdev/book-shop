@@ -10,8 +10,10 @@ import (
 	"gorm.io/gorm"
 )
 
+// DB instance
 var DB *gorm.DB
 
+// ConnectDataBase return connection
 func ConnectDataBase() {
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable TimeZone=America/Bogota",
@@ -26,8 +28,8 @@ func ConnectDataBase() {
 		panic("failed to connect database")
 	}
 
-	db.AutoMigrate(&Book{})
-	db.AutoMigrate(&Category{})
+	db.AutoMigrate(&Book{})     // nolint
+	db.AutoMigrate(&Category{}) // nolint
 
 	DB = db
 }

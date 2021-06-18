@@ -78,7 +78,7 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.Book"
+                            "$ref": "#/definitions/models.CreateBookInput"
                         }
                     }
                 }
@@ -109,6 +109,69 @@ var doc = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.Book"
+                        }
+                    }
+                }
+            }
+        },
+        "/category/": {
+            "get": {
+                "description": "Create a category.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "List categories.",
+                "parameters": [
+                    {
+                        "description": "Category Data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Category"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a category.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Create a category.",
+                "parameters": [
+                    {
+                        "description": "Category Data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoryInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
                         }
                     }
                 }
@@ -147,6 +210,18 @@ var doc = `{
         "models.Book": {
             "type": "object",
             "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "integer"
+                },
+                "createAt": {
+                    "type": "string"
+                },
+                "deleteAt": {
+                    "type": "string"
+                },
                 "id": {
                     "type": "integer"
                 },
@@ -155,16 +230,60 @@ var doc = `{
                 },
                 "title": {
                     "type": "string"
+                },
+                "updateAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Category": {
+            "type": "object",
+            "properties": {
+                "books": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Book"
+                    }
+                },
+                "createAt": {
+                    "type": "string"
+                },
+                "deleteAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "updateAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryInput": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
                 }
             }
         },
         "models.CreateBookInput": {
             "type": "object",
             "required": [
+                "author",
                 "price",
                 "title"
             ],
             "properties": {
+                "author": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "integer"
+                },
                 "price": {
                     "type": "number"
                 },
