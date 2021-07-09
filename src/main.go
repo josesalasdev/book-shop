@@ -6,6 +6,7 @@ import (
 	"github.com/josesalasdev/golang_api_template/docs"
 	"github.com/josesalasdev/golang_api_template/src/config"
 	"github.com/josesalasdev/golang_api_template/src/controllers"
+	"github.com/josesalasdev/golang_api_template/src/middlewares"
 	"github.com/josesalasdev/golang_api_template/src/models"
 	swaggerFiles "github.com/swaggo/files"     // swagger embed files
 	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
@@ -24,8 +25,15 @@ func main() {
 
 	// routes
 	r.GET("/v1/ping", controllers.Ping)
+	r.POST("v1/signin", controllers.SignIn)
+
+	apiUser := r.Group("/v1/user")
+	{
+		apiUser.POST("/", controllers.CreateUser)
+	}
 
 	apiBook := r.Group("/v1/book")
+	apiBook.Use(middlewares.AuthorizeJWT())
 	{
 		apiBook.POST("/", controllers.CreateBook)
 		apiBook.GET("/", controllers.FindBooks)

@@ -30,6 +30,7 @@ func ConnectDataBase() {
 
 	db.AutoMigrate(&Book{})     // nolint
 	db.AutoMigrate(&Category{}) // nolint
+	db.AutoMigrate(&User{})     // nolint
 
 	DB = db
 }
