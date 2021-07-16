@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt"
-	"github.com/josesalasdev/golang_api_template/src/config"
+	"github.com/josesalasdev/book-shop/src/config"
 )
 
 // JWTService interface.

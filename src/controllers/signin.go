@@ -5,20 +5,20 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/josesalasdev/golang_api_template/src/models"
-	"github.com/josesalasdev/golang_api_template/src/services"
+	"github.com/josesalasdev/book-shop/src/models"
+	"github.com/josesalasdev/book-shop/src/services"
 )
 
-type loginReponse struct {
+type signInReponse struct {
 	Token string `json:"token"`
 }
 
-type loginModel struct {
+type signInModel struct {
 	Email    string `json:"email" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
-func (lm *loginModel) Validate() bool {
+func (lm *signInModel) Validate() bool {
 	var user models.User
 	if err := models.DB.First(&user, "email = ?", lm.Email).Error; err != nil {
 		return false
@@ -27,10 +27,18 @@ func (lm *loginModel) Validate() bool {
 }
 
 // SignIn Controller.
+// CreateCategory godoc
+// @Summary SignIn.
+// @Description SignIn.
+// @Accept  json
+// @Produce  json
+// @Param data body signInModel true "signIn Data"
+// @Success 200 {object} signInReponse
+// @Router /signin/ [post]
 func SignIn(c *gin.Context) {
 	serviceJWT := services.JWTAuthService()
 
-	var input loginModel
+	var input signInModel
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
@@ -40,5 +48,5 @@ func SignIn(c *gin.Context) {
 		return
 	}
 	token := serviceJWT.GenerateToken(input.Email, true)
-	c.JSON(http.StatusOK, loginReponse{token})
+	c.JSON(http.StatusOK, signInReponse{token})
 }

@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
-	"github.com/josesalasdev/golang_api_template/src/services"
+	"github.com/josesalasdev/book-shop/src/services"
 )
 
 // AuthorizeJWT is middleware JWT.

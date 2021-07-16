@@ -1,4 +1,4 @@
-module github.com/josesalasdev/golang_api_template
+module github.com/josesalasdev/book-shop
 
 go 1.16
 
