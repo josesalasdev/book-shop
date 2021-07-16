@@ -31,4 +31,4 @@ The license for this project is MIT and you can check it [here](LICENSE)
 
 ## CONTRIBUTING
 
-If you want to contribute to the project, keep the following in mind [📖](LICENSE)
+If you want to contribute to the project, keep the following in mind [📖](CONTRIBUTING.md)
