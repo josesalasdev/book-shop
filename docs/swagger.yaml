@@ -4,6 +4,26 @@ definitions:
       message:
         type: string
     type: object
+  controllers.signInModel:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  controllers.signInReponse:
+    properties:
+      token:
+        type: string
+    type: object
+  controllers.userResponse:
+    properties:
+      message:
+        type: string
+    type: object
   models.Book:
     properties:
       author:
@@ -59,6 +79,16 @@ definitions:
     - author
     - price
     - title
+    type: object
+  models.UserInput:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
     type: object
 info:
   contact:
@@ -177,4 +207,44 @@ paths:
           schema:
             $ref: '#/definitions/controllers.pingMessage'
       summary: Health api.
+  /signin/:
+    post:
+      consumes:
+      - application/json
+      description: SignIn.
+      parameters:
+      - description: signIn Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.signInModel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.signInReponse'
+      summary: SignIn.
+  /user/:
+    post:
+      consumes:
+      - application/json
+      description: Create an user.
+      parameters:
+      - description: user Data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controllers.userResponse'
+      summary: Create an user.
 swagger: "2.0"

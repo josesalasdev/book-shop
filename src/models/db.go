@@ -5,7 +5,7 @@ package models
 import (
 	"fmt"
 
-	"github.com/josesalasdev/golang_api_template/src/config"
+	"github.com/josesalasdev/book-shop/src/config"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )

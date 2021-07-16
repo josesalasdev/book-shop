@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/josesalasdev/golang_api_template/src/models"
+	"github.com/josesalasdev/book-shop/src/models"
 )
 
 // CreateCategory godoc

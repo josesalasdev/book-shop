@@ -27,7 +27,7 @@ jobs:
       # 2. go install -ldflags '-s -w' github.com/foo/bar/cmd/baz 
       #    -ldflags '-s -w' means strip the debug symbols from the binary. This
       #    significantly shrinks the binary size and is a security best practice.
-      - go install github.com/josesalasdev/golang_api_template/src/
+      - go install github.com/josesalasdev/book-shop/src/
 
   # golangci-lint runs dozens of linters in parallel on your project. It is the
   # best Go linter.

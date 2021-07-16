@@ -3,7 +3,7 @@
 package models
 
 import (
-	"github.com/josesalasdev/golang_api_template/src/utils"
+	"github.com/josesalasdev/book-shop/src/utils"
 )
 
 // User model.

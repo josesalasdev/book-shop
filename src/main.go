@@ -3,11 +3,11 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/joho/godotenv/autoload"
-	"github.com/josesalasdev/golang_api_template/docs"
-	"github.com/josesalasdev/golang_api_template/src/config"
-	"github.com/josesalasdev/golang_api_template/src/controllers"
-	"github.com/josesalasdev/golang_api_template/src/middlewares"
-	"github.com/josesalasdev/golang_api_template/src/models"
+	"github.com/josesalasdev/book-shop/docs"
+	"github.com/josesalasdev/book-shop/src/config"
+	"github.com/josesalasdev/book-shop/src/controllers"
+	"github.com/josesalasdev/book-shop/src/middlewares"
+	"github.com/josesalasdev/book-shop/src/models"
 	swaggerFiles "github.com/swaggo/files"     // swagger embed files
 	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
@@ -47,7 +47,7 @@ func main() {
 	}
 
 	// programmatically set swagger info
-	docs.SwaggerInfo.Title = "Go template API"
+	docs.SwaggerInfo.Title = "Book Shop API"
 	docs.SwaggerInfo.Description = "This is a sample server golang."
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.Host = "localhost:8080"
